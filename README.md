@@ -37,6 +37,11 @@ npm install
 DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/social_api
 JWT_SECRET=tu_clave_secreta
 ```
+
+> ⚠️ **Importante**  
+> Asegúrate de tener **PostgreSQL instalado y corriendo** en tu máquina.  
+> Crea una base de datos llamada `social_api` y actualiza el archivo `.env` con tus credenciales (`usuario`, `contraseña`, puerto, etc.) **antes de correr las migraciones**.
+
 4. **Inicializa la base de datos con Prisma:**
 
 ```bash
