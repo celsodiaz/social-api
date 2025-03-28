@@ -1,83 +1,85 @@
-📘 API Social - Node.js + Express + PostgreSQL + Prisma
-Esta es una API RESTful para una red social sencilla que permite manejar usuarios, autenticación y publicaciones.
+# 📱 social-api
 
-🚀 Tecnologías
-Node.js
+API REST para una red social sencilla. Permite gestionar usuarios, autenticación y publicaciones, con seguridad basada en tokens JWT y base de datos PostgreSQL.
 
-Express.js
+---
 
-PostgreSQL (puedes usar Railway o local)
+## 🛠️ Tecnologías
 
-Prisma ORM
+- Node.js
+- Express
+- PostgreSQL
+- Prisma ORM
+- JSON Web Tokens (JWT)
+- Bcrypt
+- Dotenv
 
-JWT para autenticación
+---
 
-Bcrypt para encriptar contraseñas
+## 🚀 Instalación y uso
 
-🛠️ Instalación
-Clona el repositorio:
+1. **Clona el repositorio:**
 
-bash
-Copiar
-Editar
-git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-cd TU_REPOSITORIO
-Instala dependencias:
+```bash
+git clone https://github.com/tu-usuario/social-api.git
+cd social-api
+```
+2. **Instalar las dependencias:**
 
-bash
-Copiar
-Editar
+```bash
+
 npm install
-Crea el archivo .env y configura tus variables:
+```
+3. **Crea el archivo .env con tus variables de entorno:**
 
-env
-Copiar
-Editar
+```bash
+
 DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/social_api
-JWT_SECRET=mi_secreto_ultrasecreto
-Genera cliente de Prisma y migra:
+JWT_SECRET=tu_clave_secreta
+```
+4. **Inicializa la base de datos con Prisma:**
 
-bash
-Copiar
-Editar
+```bash
 npx prisma generate
 npx prisma migrate dev --name init
-Inicia el servidor:
+```
+5. **Inicia el servidor:**
 
-bash
-Copiar
-Editar
-npm run dev
-🧪 Endpoints principales
-🔐 Autenticación
-POST /api/auth/login: login con email y contraseña
+```bash
+node server.js
+```
 
-👤 Usuarios
-POST /api/users: crear usuario
+## 🧪 Endpoints principales
 
-GET /api/users: listar todos (requiere token)
+**👤 Usuarios**
+| Método | Ruta             | Descripción           |
+|--------|------------------|-----------------------|
+| POST   | /api/users       | Crear usuario         |
+| GET    | /api/users       | Listar usuarios       |
+| GET    | /api/users/:id   | Obtener usuario por ID|
+| PUT    | /api/users/:id   | Editar usuario        |
+| DELETE | /api/users/:id   | Eliminar usuario      |
 
-GET /api/users/:id: ver un usuario
+**🔐 Autenticación**
 
-PUT /api/users/:id: editar usuario
+| Método | Ruta            | Descripción       |
+|--------|------------------|-------------------|
+| POST   | /api/auth/login | Login de usuario  |
 
-DELETE /api/users/:id: eliminar usuario
+**📝 Publicaciones**
 
-📝 Publicaciones
-POST /api/posts: crear publicación (token)
+| Método | Ruta             | Descripción             |
+|--------|------------------|-------------------------|
+| POST   | /api/posts       | Crear publicación       |
+| GET    | /api/posts       | Listar publicaciones    |
+| GET    | /api/posts/:id   | Ver publicación por ID  |
+| PUT    | /api/posts/:id   | Editar publicación      |
+| DELETE | /api/posts/:id   | Eliminar publicación    |
 
-GET /api/posts: listar publicaciones
+**🔐 Seguridad**
 
-GET /api/posts/:id: ver una publicación
+Los endpoints protegidos requieren token JWT en el header:
 
-PUT /api/posts/:id: editar publicación (token)
-
-DELETE /api/posts/:id: eliminar publicación (token)
-
-📬 Autenticación
-Para acceder a rutas protegidas, usa un token JWT en los headers:
-
-http
-Copiar
-Editar
-Authorization: Bearer tu_token
+```text
+Authorization: Bearer tu_token_aquí
+```
