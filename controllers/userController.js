@@ -69,12 +69,21 @@ exports.updateUser = async (req, res) => {
   };
   
 
-exports.deleteUser = async (req, res) => {
-  const { id } = req.params;
-  try {
-    await prisma.user.delete({ where: { id: Number(id) } });
-    res.json({ message: 'Usuario eliminado' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error al eliminar usuario', error: error.message });
-  }
-};
+  exports.deleteUser = async (req, res) => {
+    const { id } = req.params;
+    const userId = req.user.id;
+  
+    if (parseInt(id) !== userId) {
+      return res.status(403).json({ message: 'No autorizado para eliminar este usuario' });
+    }
+  
+    try {
+      await prisma.user.delete({
+        where: { id: parseInt(id) }
+      });
+      res.json({ message: 'Usuario eliminado correctamente' });
+    } catch (error) {
+      res.status(500).json({ message: 'Error al eliminar usuario', error: error.message });
+    }
+  };
+  
