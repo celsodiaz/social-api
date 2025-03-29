@@ -21,7 +21,7 @@ API REST para una red social sencilla. Permite gestionar usuarios, autenticació
 1. **Clona el repositorio:**
 
 ```bash
-git clone https://github.com/tu-usuario/social-api.git
+git clone git@github.com:celsodiaz/social-api.git
 cd social-api
 ```
 2. **Instalar las dependencias:**
@@ -34,8 +34,10 @@ npm install
 
 ```bash
 
-DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/social_api
-JWT_SECRET=tu_clave_secreta
+DATABASE_URL="postgresql://postgres:<contraseña>@<host>:<puerto>/<nombre_de_base_de_datos>"
+// example : postgresql://postgres:12345670@localhost:5432/social_api
+JWT_SECRET="supersecreto123"
+PORT=3000
 ```
 
 > ⚠️ **Importante**  
@@ -56,14 +58,14 @@ node server.js
 
 ## 🧪 Endpoints principales
 
-**👤 Usuarios**
-| Método | Ruta             | Descripción           |
-|--------|------------------|-----------------------|
-| POST   | /api/users       | Crear usuario         |
-| GET    | /api/users       | Listar usuarios       |
-| GET    | /api/users/:id   | Obtener usuario por ID|
-| PUT    | /api/users/:id   | Editar usuario        |
-| DELETE | /api/users/:id   | Eliminar usuario      |
+### 👤 Usuarios
+
+| Método | Ruta             | Descripción            | Headers requeridos               |
+|--------|------------------|------------------------|----------------------------------|
+| POST   | /api/users       | Crear usuario          | Content-Type: application/json   |
+| GET    | /api/users       | Listar usuarios        | Authorization: Bearer <token>    |
+| PUT    | /api/users/:id   | Editar usuario         | Authorization: Bearer <token>    |
+| DELETE | /api/users/:id   | Eliminar usuario       | Authorization: Bearer <token>    |
 
 **🔐 Autenticación**
 
@@ -77,7 +79,6 @@ node server.js
 |--------|------------------|-------------------------|
 | POST   | /api/posts       | Crear publicación       |
 | GET    | /api/posts       | Listar publicaciones    |
-| GET    | /api/posts/:id   | Ver publicación por ID  |
 | PUT    | /api/posts/:id   | Editar publicación      |
 | DELETE | /api/posts/:id   | Eliminar publicación    |
 
