@@ -22,6 +22,9 @@ exports.getAllPosts = async (req, res) => {
   try {
     const posts = await prisma.post.findMany({
       include: { author: { select: { id: true, username: true } } },
+      orderBy: {
+        createdAt: 'asc'
+      }
     });
     res.json(posts);
   } catch (error) {
