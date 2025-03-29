@@ -58,34 +58,36 @@ node server.js
 
 ## 🧪 Endpoints principales
 
-### 👤 Usuarios
-
-| Método | Ruta             | Descripción            | Headers requeridos               |
-|--------|------------------|------------------------|----------------------------------|
-| POST   | /api/users       | Crear usuario          | Content-Type: application/json   |
-| GET    | /api/users       | Listar usuarios        | Authorization: Bearer <token>    |
-| PUT    | /api/users/:id   | Editar usuario         | Authorization: Bearer <token>    |
-| DELETE | /api/users/:id   | Eliminar usuario       | Authorization: Bearer <token>    |
-
-**🔐 Autenticación**
-
-| Método | Ruta            | Descripción       |
-|--------|------------------|-------------------|
-| POST   | /api/auth/login | Login de usuario  |
-
-**📝 Publicaciones**
-
-| Método | Ruta             | Descripción             |
-|--------|------------------|-------------------------|
-| POST   | /api/posts       | Crear publicación       |
-| GET    | /api/posts       | Listar publicaciones    |
-| PUT    | /api/posts/:id   | Editar publicación      |
-| DELETE | /api/posts/:id   | Eliminar publicación    |
-
 **🔐 Seguridad**
 
 Los endpoints protegidos requieren token JWT en el header:
 
 ```text
 Authorization: Bearer tu_token_aquí
+Content-Type: application/json
 ```
+
+### 👤 Usuarios
+
+| Método | Ruta             | Descripción            | Headers requeridos            |
+|--------|------------------|------------------------|-------------------------------|
+| POST   | /api/users       | Crear usuario          | Content-Type                  |
+| GET    | /api/users       | Listar usuarios        | Authorization                 |
+| PUT    | /api/users/:id   | Editar usuario         | Authorization && Content-Type |
+| DELETE | /api/users/:id   | Eliminar usuario       | Authorization                 |
+
+**🔐 Autenticación**
+
+| Método | Ruta            | Descripción       | Headers requeridos            |
+|--------|-----------------|-------------------|-------------------------------|
+| POST   | /api/auth/login | Login de usuario  | Content-Type                  |
+
+**📝 Publicaciones**
+
+| Método | Ruta             | Descripción             | Headers requeridos            |
+|--------|------------------|-------------------------|-------------------------------|
+| POST   | /api/posts       | Crear publicación       | Authorization && Content-Type |
+| GET    | /api/posts       | Listar publicaciones    | Authorization                 |
+| PUT    | /api/posts/:id   | Editar publicación      | Authorization && Content-Type |
+| DELETE | /api/posts/:id   | Eliminar publicación    | Authorization                 |
+
