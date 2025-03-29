@@ -78,9 +78,7 @@ exports.updateUser = async (req, res) => {
     }
   
     try {
-      await prisma.user.delete({
-        where: { id: parseInt(id) }
-      });
+      await prisma.user.delete({ where: { id: Number(id) } });
       res.json({ message: 'Usuario eliminado correctamente' });
     } catch (error) {
       res.status(500).json({ message: 'Error al eliminar usuario', error: error.message });
