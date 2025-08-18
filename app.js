@@ -10,10 +10,15 @@ app.use(express.json());
 
 // 🔑 habilitar CORS
 app.use(cors({
-  origin: ["http://localhost:5173", "https://social-client.vercel.app"], // frontend local y desplegado
+  origin: [
+    "http://localhost:5173",
+    "https://social-client.vercel.app",
+    "https://frontend-api-social-production.up.railway.app" // 🔹 agrega esta
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
 
 // Rutas
 app.use('/api/users', userRoutes);
